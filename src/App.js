@@ -9,7 +9,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      championsToDisplay:{},
+      fullChampions:[],
+      championsToDisplay:[],
       isStartPage: true,
       isMainPage: false,
     }
@@ -26,6 +27,7 @@ class App extends Component {
         championsArray.push(res.data.data[key]);
       }
       this.setState({
+        fullChampions: championsArray,
         championsToDisplay: championsArray,
       });
     });
@@ -39,11 +41,13 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.championsToDisplay)
+    
     return (
       <div className="App">
-        {this.state.isStartPage ? <StartPage buttonClick={this.startPageHandleClick} /> : null}
-        {this.state.isMainPage ? <MainPage  champions={this.state.championsToDisplay}/> : null}
+        <div className="wrapper">
+          {this.state.isStartPage ? <StartPage buttonClick={this.startPageHandleClick} /> : null}
+          {this.state.isMainPage ? <MainPage  champions={this.state.championsToDisplay}/> : null}
+        </div>
       </div>
     );
   }
