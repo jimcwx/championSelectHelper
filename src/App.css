@@ -6,6 +6,18 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 .visuallyHidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  background-image: linear-gradient(to bottom, #0C252D, #287591);
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+}
+
 .wrapper {
   max-width: 1078px;
   margin: 0 auto;
@@ -19,6 +31,15 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+
+.unclicked {
+  background-color: rgba(0,0,0,0.5);
+}
+.clicked {
+  background-color: rgba(0,0,0,0);
 }
 
 img{
@@ -27,8 +48,19 @@ img{
   object-fit: contain;
 }
 
+img.champ{
+  max-height:400px;
+  max-width: 200px;
+  object-fit:contain;
+}
+
 label {
-  width: calc(100% / 4);
+  width: calc(100% / 3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 form {
@@ -37,4 +69,30 @@ form {
   flex-wrap: wrap;
   align-items: center;
 }
+
+form.classSelect button {
+  width: 100%;
+  margin: 0 40%;
+}
+
+/* Stylings for DisplayedChampions Component */
+.displayedChampions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.champBox a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.champBox {
+  margin: 10px;
+  width: calc(100% / 5 - 20px)
+}
+
 

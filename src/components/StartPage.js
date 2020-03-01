@@ -5,8 +5,6 @@ class StartPage extends Component {
   
 
   render() {
-    
-    
     return (
       <div className="startPage">
         <h1>Champion Select Helper</h1>

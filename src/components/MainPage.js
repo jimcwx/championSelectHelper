@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
 
+import ChampCheckBox from "../components/ChampCheckBox";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import DisplayedChampions from "../components/DisplayedChampions"
 
-// import tank from "../assets/Tank.png"
-// import mage from "../assets/Mage.png"
-// import assassin from "../assets/Mage.png"
-// import support from "../assets/Support.png"
-// import marksman from "../assets/Marksman.png"
-import ChampCheckBox from "../components/ChampCheckBox"
-
+const MySwal = withReactContent(Swal);
 
 class MainPage extends Component {
   constructor(props) {
     super(props);
-    
     this.state = {
       championsToDisplay: this.props.champions,
+      filteredChampions: [],
       userSelection: [],
       availableClasses: ["Fighter", "Tank", "Mage", "Assassin", "Support", "Marksman"],
+      hasUserMadeSelection: false,
     }
   }
 
   componentDidMount() {
-    console.log(this.state.championsToDisplay);
+    
   }
 
   creatingClasses = (classesArray) => {
     let jsxToAdd = classesArray.map((champType, index)=>{
-      return <ChampCheckBox key={index} type={champType} index={index + 1} url={process.env.PUBLIC_URL + `/assets/${champType}.png`} userSelectClassType={this.userSelectClassType}/>;
+      return (
+        <ChampCheckBox 
+          key={index} 
+          type={champType} 
+          url={process.env.PUBLIC_URL + `/assets/${champType}.png`} 
+          userSelectClassType={this.userSelectClassType} 
+          userUnselectClassType={this.userUnselectClassType} 
+          index={index+1}
+        />
+      );
     })
     return jsxToAdd
   }
@@ -40,21 +48,64 @@ class MainPage extends Component {
     console.log(this.state.userSelection)
   }
 
-  
+  userUnselectClassType = (classType) => {
+    const oldSelection = this.state.userSelection
+    const newSelection = oldSelection.filter((champType)=>{
+      return champType !== classType
+    })
+    this.setState({
+      userSelection: newSelection,
+    })
+  }
 
-  componentDidUpdate() {
-    console.log("this is the userSelection Array", this.state.userSelection)
+  userConfirmClassSelect = (e) => {
+    e.preventDefault();
+    this.filterChampionsToDisplay(this.state.userSelection, this.state.championsToDisplay);
+  }
+
+  filterChampionsToDisplay = (userSelection, champsToFilter) => {
+    const champsTest = champsToFilter.filter(champ => {
+      for (let selection of userSelection) {
+        if (!champ.tags.includes(selection)) {
+          return false;
+        }
+      }
+      return true;
+    });
+    this.setState({
+      filteredChampions: champsTest,
+    }, this.checkIfArrayIsEmpty)
+  }
+
+  checkIfArrayIsEmpty = () => {
+    if (!this.state.filteredChampions.length) {
+      MySwal.fire({
+        icon: "error",
+        title: "Attention!",
+        text: "After looking through all 148 champions, we have found ZERO champions that matched your selection, that's right, ZERO. Please refine your search parameters and remember to select to a maximum of 2"
+      });
+    } else {
+      this.setState({
+        hasUserMadeSelection: true
+      })
+    }
+  }
+
+  componentDidUpdate () {
+    console.log("I UPDATED")
   }
 
   render() {
-    
     return (
       <main className="mainPage">
         <div className="wrapper">
           <h1>Champion Select Helper</h1>
-          <form action="submit">
+          <p>Note: Select up to two class types!</p>
+          <form action="submit" className="classSelect" onSubmit={this.userConfirmClassSelect}>
             {this.creatingClasses(this.state.availableClasses)}
+            <button>Confirm Selection</button>
           </form>
+          {this.state.hasUserMadeSelection ? <DisplayedChampions filteredChampions={this.state.filteredChampions}/> : null}
         </div>
       </main>
     );
