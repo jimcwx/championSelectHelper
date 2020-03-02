@@ -10,58 +10,51 @@ const MySwal = withReactContent(Swal);
 class MainPage extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       championsToDisplay: this.props.champions,
       filteredChampions: [],
       userSelection: [],
       availableClasses: ["Fighter", "Tank", "Mage", "Assassin", "Support", "Marksman"],
       hasUserMadeSelection: false,
-    }
+      userSelectedChampion: this.props.userSelectedChampion
+    };
+    this.displayChampRef = React.createRef();
   }
 
-  componentDidMount() {
-    
-  }
+  creatingClasses = classesArray => {
+    let jsxToAdd = classesArray.map((champType, index) => {
+      return <ChampCheckBox key={index} type={champType} url={process.env.PUBLIC_URL + `/assets/${champType}.png`} userSelectClassType={this.userSelectClassType} userUnselectClassType={this.userUnselectClassType} index={index + 1} />;
+    });
+    return jsxToAdd;
+  };
 
-  creatingClasses = (classesArray) => {
-    let jsxToAdd = classesArray.map((champType, index)=>{
-      return (
-        <ChampCheckBox 
-          key={index} 
-          type={champType} 
-          url={process.env.PUBLIC_URL + `/assets/${champType}.png`} 
-          userSelectClassType={this.userSelectClassType} 
-          userUnselectClassType={this.userUnselectClassType} 
-          index={index+1}
-        />
-      );
-    })
-    return jsxToAdd
-  }
-
-  userSelectClassType = (classType) => {
-    const newSelection = this.state.userSelection
-    newSelection.push(classType)
+  userSelectClassType = classType => {
+    const newSelection = this.state.userSelection;
+    newSelection.push(classType);
     this.setState({
-      userSelection: newSelection,
-    })
-    console.log(this.state.userSelection)
-  }
+      userSelection: newSelection
+    });
+  };
 
-  userUnselectClassType = (classType) => {
-    const oldSelection = this.state.userSelection
-    const newSelection = oldSelection.filter((champType)=>{
-      return champType !== classType
-    })
+  userUnselectClassType = classType => {
+    const oldSelection = this.state.userSelection;
+    const newSelection = oldSelection.filter(champType => {
+      return champType !== classType;
+    });
     this.setState({
-      userSelection: newSelection,
-    })
-  }
+      userSelection: newSelection
+    });
+  };
 
-  userConfirmClassSelect = (e) => {
+  userConfirmClassSelect = e => {
     e.preventDefault();
     this.filterChampionsToDisplay(this.state.userSelection, this.state.championsToDisplay);
-  }
+  };
+
+  scrollAfterDisplay = () => {
+      window.scrollTo(0, this.displayChampRef.current.offsetTop);
+  };
 
   filterChampionsToDisplay = (userSelection, champsToFilter) => {
     const champsTest = champsToFilter.filter(champ => {
@@ -72,10 +65,13 @@ class MainPage extends Component {
       }
       return true;
     });
-    this.setState({
-      filteredChampions: champsTest,
-    }, this.checkIfArrayIsEmpty)
-  }
+    this.setState(
+      {
+        filteredChampions: champsTest
+      },
+      this.checkIfArrayIsEmpty
+    );
+  };
 
   checkIfArrayIsEmpty = () => {
     if (!this.state.filteredChampions.length) {
@@ -87,13 +83,9 @@ class MainPage extends Component {
     } else {
       this.setState({
         hasUserMadeSelection: true
-      })
+      }, this.scrollAfterDisplay);
     }
-  }
-
-  componentDidUpdate () {
-    console.log("I UPDATED")
-  }
+  };
 
   render() {
     return (
@@ -101,11 +93,18 @@ class MainPage extends Component {
         <div className="wrapper">
           <h1>Champion Select Helper</h1>
           <p>Note: Select up to two class types!</p>
+          <p>Select nothing if you just want to see all the Champions!</p>
           <form action="submit" className="classSelect" onSubmit={this.userConfirmClassSelect}>
             {this.creatingClasses(this.state.availableClasses)}
             <button>Confirm Selection</button>
           </form>
-          {this.state.hasUserMadeSelection ? <DisplayedChampions filteredChampions={this.state.filteredChampions}/> : null}
+          <div ref={this.displayChampRef}>
+            {this.state.hasUserMadeSelection ? (
+              <DisplayedChampions 
+                filteredChampions={this.state.filteredChampions} id="displayedChampions" userSelectedChampion={this.state.userSelectedChampion}/>) 
+            : 
+              null}
+          </div>
         </div>
       </main>
     );

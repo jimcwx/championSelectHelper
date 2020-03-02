@@ -4,6 +4,7 @@ import './App.css';
 import axios from "axios";
 import StartPage from "./components/StartPage"
 import MainPage from "./components/MainPage";
+import ChampDetailed from "./components/ChampDetailed"
 
 class App extends Component {
   constructor() {
@@ -13,6 +14,8 @@ class App extends Component {
       championsToDisplay:[],
       isStartPage: true,
       isMainPage: false,
+      isChampDetailPage:false,
+      selectedChamp:"",
     }
   }
 
@@ -32,6 +35,14 @@ class App extends Component {
       });
     });
   }
+
+  userSelectedChampion = (userSelection) => {
+    this.setState({
+      isMainPage: !this.state.isMainPage,
+      isChampDetailPage:!this.state.isChampDetailPage,
+      selectedChamp:userSelection
+    })
+  }
   
   startPageHandleClick = () => {
     this.setState({
@@ -45,7 +56,7 @@ class App extends Component {
       <div className="App">
         <div className="wrapper">
           {this.state.isStartPage ? <StartPage buttonClick={this.startPageHandleClick} /> : null}
-          {this.state.isMainPage ? <MainPage  champions={this.state.championsToDisplay}/> : null}
+          {this.state.isMainPage ? <MainPage  champions={this.state.championsToDisplay} userSelectedChampion={this.userSelectedChampion}/> : null}
         </div>
       </div>
     );
