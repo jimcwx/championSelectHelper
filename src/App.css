@@ -42,7 +42,8 @@ p {
   margin: 5px
 }
 
-.mainPage h1 {
+.mainPage h1,
+.champDetailed h1 {
   margin: 10px auto 10px auto;
   font-size: 4rem;
 }
@@ -200,8 +201,51 @@ form.classSelect button {
   padding: 5px;
 }
 
+/* Stylings for the ChampDetailed page */
 
+.champDetailed h2,
+.champDetailed h3 {
+  color: #F7F9F9;
+  text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+}
 
+div.textAndImgContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.textAndImgContainer .textBox {
+  margin: 5px;
+  width: calc(40% - 10px);
+  border: 1px solid white;
+}
+
+.textBox p {
+  text-align: left;
+}
+
+.textAndImgContainer img {
+  margin: 5px;
+  object-fit:cover;
+  width: calc(60% - 10px);
+  max-height: 800px;
+  max-width: 800px;
+}
+
+.champDetailed .abilities {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.abilities .icons {
+  display: flex;
+  width: 60%;
+  justify-content: space-around;
+  flex-wrap:wrap;
+}
 
 /* animation keyframes */
 

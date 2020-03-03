@@ -57,6 +57,7 @@ class App extends Component {
         <div className="wrapper">
           {this.state.isStartPage ? <StartPage buttonClick={this.startPageHandleClick} /> : null}
           {this.state.isMainPage ? <MainPage  champions={this.state.championsToDisplay} userSelectedChampion={this.userSelectedChampion}/> : null}
+          {this.state.isChampDetailPage ? <ChampDetailed selectedChamp={this.state.selectedChamp}/> : null}
         </div>
       </div>
     );
