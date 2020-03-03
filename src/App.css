@@ -211,7 +211,6 @@ form.classSelect button {
   border: none;
   transform:scale(1);
   transition: all 0.5s;
-  z-index:1;
 }
 
 .champBox {
@@ -223,8 +222,12 @@ form.classSelect button {
 .champBox:hover img,
 .champBox:focus img {
   transform:scale(1.25);
-  z-index:100;
   animation: borderRainbow 1s linear infinite;
+}
+
+.champBox:hover,
+.champBox:focus {
+  z-index:100;
 }
 
 /* Stylings for the ChampDetailed page */
@@ -249,6 +252,12 @@ div.textAndImgContainer {
 
 .textBox p {
   text-align: left;
+}
+
+.textBox p,
+.textBox h2,
+.textBox h3 {
+  padding-left:10px;
 }
 
 .textAndImgContainer img {
