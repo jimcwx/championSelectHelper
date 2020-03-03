@@ -21,7 +21,7 @@ class App extends Component {
   componentDidMount() {
     // storing a list of all league of legends champions in state
     axios({
-      url: "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json",
+      url: "https://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json",
       method: "GET",
       responseType: "json"
     }).then(res => {
