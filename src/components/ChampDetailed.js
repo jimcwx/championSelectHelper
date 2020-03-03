@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import axios from "axios";
 
+import AbilityInfo from "./AbilityInfo"
+
 class ChampDetailed extends Component {
   constructor() {
     super();
@@ -12,7 +14,12 @@ class ChampDetailed extends Component {
       champSpell2:{},
       champSpell3:{},
       isHovering: false,
-      abilityInfo: ""
+      abilityInfo: "",
+      champPassiveImg:"",
+      champSpell0Img:"",
+      champSpell1Img:"",
+      champSpell2Img:"",
+      champSpell3Img:"",
     }
   }
 
@@ -29,6 +36,11 @@ class ChampDetailed extends Component {
         champSpell1: res.data.data[this.props.selectedChamp].spells[1],
         champSpell2: res.data.data[this.props.selectedChamp].spells[2],
         champSpell3: res.data.data[this.props.selectedChamp].spells[3],
+        champPassiveImg: res.data.data[this.props.selectedChamp].passive.image.full,
+        champSpell0Img:res.data.data[this.props.selectedChamp].spells[0].image.full,
+        champSpell1Img:res.data.data[this.props.selectedChamp].spells[1].image.full,
+        champSpell2Img:res.data.data[this.props.selectedChamp].spells[2].image.full,
+        champSpell3Img:res.data.data[this.props.selectedChamp].spells[3].image.full,
       });
     })
   }
@@ -44,7 +56,7 @@ class ChampDetailed extends Component {
     this.toggleHoverState();
     if (e.target.id==="passive") {
       this.setState({
-        abilityInfo: this.state.champPassive.description
+        abilityInfo: this.state.champPassive.name
       })
     } else {
       this.setState({
@@ -55,7 +67,7 @@ class ChampDetailed extends Component {
 
 
   render() {
-    return (
+    return ( this.state.champDetails && 
       <div className="champDetailed">
         <h1 className="champDetailed">Champion Select Helper</h1>
         <div className="textAndImgContainer">
@@ -69,14 +81,17 @@ class ChampDetailed extends Component {
         <div className="abilities">
           <h2>Champion Passive and Abilities</h2>
           <div className="icons">
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/passive/${this.state.champDetails.id}_Passive.png`} alt={`The passive of ${this.state.champDetails.name}, ${this.state.champPassive.name}`} id="passive" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champDetails.id}Q.png`} alt={`First ability of ${this.state.champDetails.name}, ${this.state.champSpell0.name}`} id="champSpell0" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champDetails.id}W.png`} alt={`Second ability of ${this.state.champDetails.name}, ${this.state.champSpell1.name}`} id="champSpell1" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champDetails.id}E.png`} alt={`Third ability of ${this.state.champDetails.name}, ${this.state.champSpell2.name}`} id="champSpell2" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champDetails.id}R.png`} alt={`Ultimate ability of ${this.state.champDetails.name}, ${this.state.champSpell3.name}`} id="champSpell3" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/passive/${this.state.champPassiveImg}`} alt={`The passive of ${this.state.champDetails.name}, ${this.state.champPassive.name}`} id="passive" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell0Img}`} alt={`First ability of ${this.state.champDetails.name}, ${this.state.champSpell0.name}`} id="champSpell0" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell1Img}`} alt={`Second ability of ${this.state.champDetails.name}, ${this.state.champSpell1.name}`} id="champSpell1" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell2Img}`} alt={`Third ability of ${this.state.champDetails.name}, ${this.state.champSpell2.name}`} id="champSpell2" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell3Img}`} alt={`Ultimate ability of ${this.state.champDetails.name}, ${this.state.champSpell3.name}`} id="champSpell3" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
           </div>
           <div className="abilityInfo">
-            
+            {
+              this.state.isHovering &&
+              <AbilityInfo abilityInfo={this.state.abilityInfo}/>
+            }
           </div>
         </div>
       </div>

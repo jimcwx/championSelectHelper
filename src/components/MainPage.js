@@ -96,7 +96,7 @@ class MainPage extends Component {
           <p>Select nothing if you just want to see all the Champions!</p>
           <form action="submit" className="classSelect" onSubmit={this.userConfirmClassSelect}>
             {this.creatingClasses(this.state.availableClasses)}
-            <button>Confirm Selection</button>
+            <button tabIndex="0">Confirm Selection</button>
           </form>
           <div ref={this.displayChampRef}>
             {this.state.hasUserMadeSelection ? (
