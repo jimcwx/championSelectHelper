@@ -22,8 +22,8 @@ class ChampDetailed extends Component {
       champSpell3Img:"",
     }
   }
-
   componentDidMount() {
+    // based on the user champion selection passed down, a detailed champion object is stored in the state
     axios({
       url: `http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion/${this.props.selectedChamp}.json`,
       method: "GET",
@@ -45,12 +45,14 @@ class ChampDetailed extends Component {
     })
   }
 
+  // this tracks whether the user's mouse is hovering over an icon or not by changing a state
   toggleHoverState = () => {
     this.setState({
       isHovering: !this.state.isHovering
     })
   }
 
+  // this function stores the information to be displayed to the user based on which icon they hover or focus over.
   handleMouseHover = e => {
     e.preventDefault();
     this.toggleHoverState();
@@ -64,7 +66,6 @@ class ChampDetailed extends Component {
       })
     }
   }
-
   render() {
     return ( this.state.champDetails && 
       <div className="champDetailed">
@@ -79,12 +80,14 @@ class ChampDetailed extends Component {
         </div>
         <div className="abilities">
           <h2>Champion Passive and Abilities</h2>
+          <h3>Touch me!!!</h3>
           <div className="icons">
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/passive/${this.state.champPassiveImg}`} alt={`The passive of ${this.state.champDetails.name}, ${this.state.champPassive.name}`} id="passive" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell0Img}`} alt={`First ability of ${this.state.champDetails.name}, ${this.state.champSpell0.name}`} id="champSpell0" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell1Img}`} alt={`Second ability of ${this.state.champDetails.name}, ${this.state.champSpell1.name}`} id="champSpell1" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell2Img}`} alt={`Third ability of ${this.state.champDetails.name}, ${this.state.champSpell2.name}`} id="champSpell2" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell3Img}`} alt={`Ultimate ability of ${this.state.champDetails.name}, ${this.state.champSpell3.name}`} id="champSpell3" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0"/>
+            {/* Sorry that I didn't make these into components. I decided to add this detailed champion description page on the last day and just kind of rushed through it */}
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/passive/${this.state.champPassiveImg}`} alt={`The passive of ${this.state.champDetails.name}, ${this.state.champPassive.name}`} id="passive" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0" onFocus={this.handleMouseHover} onBlur={this.handleMouseHover}/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell0Img}`} alt={`First ability of ${this.state.champDetails.name}, ${this.state.champSpell0.name}`} id="champSpell0" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0" onFocus={this.handleMouseHover} onBlur={this.handleMouseHover}/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell1Img}`} alt={`Second ability of ${this.state.champDetails.name}, ${this.state.champSpell1.name}`} id="champSpell1" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0" onFocus={this.handleMouseHover} onBlur={this.handleMouseHover}/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell2Img}`} alt={`Third ability of ${this.state.champDetails.name}, ${this.state.champSpell2.name}`} id="champSpell2" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} tabIndex="0" onFocus={this.handleMouseHover} onBlur={this.handleMouseHover}/>
+            <img src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/spell/${this.state.champSpell3Img}`} alt={`Ultimate ability of ${this.state.champDetails.name}, ${this.state.champSpell3.name}`} id="champSpell3" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover}  tabIndex="0" onFocus={this.handleMouseHover} onBlur={this.handleMouseHover}/>
           </div>
           <div className="abilityInfo">
             {

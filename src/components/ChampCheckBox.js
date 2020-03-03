@@ -8,25 +8,23 @@ class ChampCheckBox extends Component {
       isChecked: true,
     }
   }
-
+  // This function helps decide whether to add or remove the user champion class selection from the user selection array on the MainPage component with two functions passed down from there.
   userClick = () => {
     if (this.state.isChecked) {
       this.props.userSelectClassType(this.state.champType);
     } else {
       this.props.userUnselectClassType(this.state.champType);
     }
-
     this.setState({
       isChecked: !this.state.isChecked,
     })
   }
-
+  // This function allows the user to make their champion class selection using the enter and tab keys
   keyUpHandler = (e) => {
     if (e.keyCode === 13) {
       this.userClick();
     } 
   }
-
   render() {
     return (
       <label htmlFor={`checkbox${this.props.index}`} tabIndex="0" onKeyUp={this.keyUpHandler}>

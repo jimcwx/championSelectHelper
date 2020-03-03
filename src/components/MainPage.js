@@ -20,14 +20,14 @@ class MainPage extends Component {
     };
     this.displayChampRef = React.createRef();
   }
-
+  // using the map method to dynamically generate user choices based on choices available, this is for flexibility purposes in case riot adds a new champion class or takes one away
   creatingClasses = classesArray => {
     let jsxToAdd = classesArray.map((champType, index) => {
       return <ChampCheckBox key={index} type={champType} url={process.env.PUBLIC_URL + `/assets/${champType}.png`} userSelectClassType={this.userSelectClassType} userUnselectClassType={this.userUnselectClassType} index={index + 1} />;
     });
     return jsxToAdd;
   };
-
+  //function to add the class selection to an array stored in the state which is passed down to the ChampCheckBox component
   userSelectClassType = classType => {
     const newSelection = this.state.userSelection;
     newSelection.push(classType);
@@ -35,7 +35,7 @@ class MainPage extends Component {
       userSelection: newSelection
     });
   };
-
+  //function to delete a class selection from the array stored in the state which is passed down to the ChampCheckBox component
   userUnselectClassType = classType => {
     const oldSelection = this.state.userSelection;
     const newSelection = oldSelection.filter(champType => {
@@ -45,16 +45,16 @@ class MainPage extends Component {
       userSelection: newSelection
     });
   };
-
+  //function that runs when the user confirms their champion class selection
   userConfirmClassSelect = e => {
     e.preventDefault();
     this.filterChampionsToDisplay(this.state.userSelection, this.state.championsToDisplay);
   };
-
+  //A function that scrolls down after the some champions are displayed based on the user champion class selection
   scrollAfterDisplay = () => {
       window.scrollTo(0, this.displayChampRef.current.offsetTop);
   };
-
+  //The function that filters down the array of all champions to an array of champions that fits the user's selection
   filterChampionsToDisplay = (userSelection, champsToFilter) => {
     const champsTest = champsToFilter.filter(champ => {
       for (let selection of userSelection) {
@@ -71,7 +71,7 @@ class MainPage extends Component {
       this.checkIfArrayIsEmpty
     );
   };
-
+  //function that fires a warning if the filtered down champions array is empty, if it's not empty, switch the state which allows the displaying of champions on the page to the user
   checkIfArrayIsEmpty = () => {
     if (!this.state.filteredChampions.length) {
       MySwal.fire({

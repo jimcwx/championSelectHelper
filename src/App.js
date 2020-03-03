@@ -18,8 +18,8 @@ class App extends Component {
       selectedChamp:"",
     }
   }
-
   componentDidMount() {
+    // storing a list of all league of legends champions in state
     axios({
       url: "http://ddragon.leagueoflegends.com/cdn/10.4.1/data/en_US/champion.json",
       method: "GET",
@@ -35,7 +35,7 @@ class App extends Component {
       });
     });
   }
-
+  // function that is passed down to the component to store which champion the user selects to display to them a more detailed description of the champion. The champion selection is then stored in state and passed down to the ChampDetailed component
   userSelectedChampion = (userSelection) => {
     this.setState({
       isMainPage: !this.state.isMainPage,
@@ -43,14 +43,13 @@ class App extends Component {
       selectedChamp:userSelection
     })
   }
-  
+  //function to switch from the landing page to the page where the user can make selections
   startPageHandleClick = () => {
     this.setState({
       isStartPage: !this.state.isStartPage,
       isMainPage: !this.state.isMainPage,
     })
   }
-
   render() {
     return (
       <div className="App">

@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import Tilt from "react-tilt";
 
 class DisplayedChampions extends Component {
-
+  // this tracks which champion the user is selecting
   clickHandler = (e) => {
     e.preventDefault();
     this.props.userSelectedChampion(e.target.id)
   }
-
+  //this allows the user to select champions using tab and confirm by using the enter key
   keyUpHandler = (e) => {
     if (e.keyCode === 13) {
       this.clickHandler(e);
