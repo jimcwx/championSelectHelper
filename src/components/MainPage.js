@@ -10,7 +10,6 @@ const MySwal = withReactContent(Swal);
 class MainPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       championsToDisplay: this.props.champions,
       filteredChampions: [],

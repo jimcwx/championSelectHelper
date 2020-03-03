@@ -65,7 +65,6 @@ class ChampDetailed extends Component {
     }
   }
 
-
   render() {
     return ( this.state.champDetails && 
       <div className="champDetailed">

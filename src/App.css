@@ -23,7 +23,6 @@ body {
   min-height: 100vh;
   color: #8EA8C3;
   font-family: 'Cinzel' ;
-  
 }
 
 /* font stylings */
@@ -55,6 +54,7 @@ h3 {
 a h2 {
   color: #F7F9F9;
   text-shadow: 1px 1px rgb(123, 190, 212);
+  font-size: 1.2rem;
 }
 
 button {
@@ -192,7 +192,7 @@ form.classSelect button {
 .displayedChampions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -214,13 +214,13 @@ form.classSelect button {
   width: calc(100% / 5 - 20px);
   padding: 5px;
 }
+
 .champBox:hover img,
 .champBox:focus img {
   transform:scale(1.25);
   z-index:100;
   animation: borderRainbow 1s linear infinite;
 }
-
 
 /* Stylings for the ChampDetailed page */
 
@@ -257,8 +257,9 @@ div.textAndImgContainer {
 .champDetailed .abilities {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  min-height:40vh;
+  
 }
 
 .abilities .icons {
@@ -373,14 +374,38 @@ h3.abilityInfo {
     width: calc(100% / 3 - 20px)
   }
 
-  h2 {
-    font-size: 1.2rem;
+  .textAndImgContainer .textBox,
+  .textAndImgContainer img{
+    width: 100%;
+  }
+
+  .textBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .textBox h2 {
+    margin: 5px auto;
+    font-size: 1.3rem;
+  }
+  .textBox h3 {
+    margin: 5px auto;
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 650px) {
   .champBox {
     width: calc(100% / 2 - 20px)
+  }
+
+  .startPage h1,
+  .champDetailed h1 {
+    font-size: 3rem;
+  }
+
+  .abilities .icons {
+    width: 100%;
   }
 }
 

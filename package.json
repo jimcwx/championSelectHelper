@@ -11,6 +11,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0",
+    "react-tilt": "^0.1.4",
     "sweetalert2": "^9.8.2",
     "sweetalert2-react-content": "^3.0.1"
   },

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class ChampCheckBox extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       champType: this.props.type,
       isChecked: true,
