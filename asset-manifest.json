@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/jimWangProjectFive/static/css/main.eb265310.chunk.css",
-    "main.js": "/jimWangProjectFive/static/js/main.66742011.chunk.js",
-    "main.js.map": "/jimWangProjectFive/static/js/main.66742011.chunk.js.map",
+    "main.css": "/jimWangProjectFive/static/css/main.0af2f577.chunk.css",
+    "main.js": "/jimWangProjectFive/static/js/main.0aa26b1c.chunk.js",
+    "main.js.map": "/jimWangProjectFive/static/js/main.0aa26b1c.chunk.js.map",
     "runtime-main.js": "/jimWangProjectFive/static/js/runtime-main.f5be7a7f.js",
     "runtime-main.js.map": "/jimWangProjectFive/static/js/runtime-main.f5be7a7f.js.map",
     "static/js/2.dd8a69f3.chunk.js": "/jimWangProjectFive/static/js/2.dd8a69f3.chunk.js",
     "static/js/2.dd8a69f3.chunk.js.map": "/jimWangProjectFive/static/js/2.dd8a69f3.chunk.js.map",
     "index.html": "/jimWangProjectFive/index.html",
-    "precache-manifest.068c0b2b11f2982d2f5248c0587034f5.js": "/jimWangProjectFive/precache-manifest.068c0b2b11f2982d2f5248c0587034f5.js",
+    "precache-manifest.cbcd8eec0dab201d9b5fe075604eb56b.js": "/jimWangProjectFive/precache-manifest.cbcd8eec0dab201d9b5fe075604eb56b.js",
     "service-worker.js": "/jimWangProjectFive/service-worker.js",
-    "static/css/main.eb265310.chunk.css.map": "/jimWangProjectFive/static/css/main.eb265310.chunk.css.map",
+    "static/css/main.0af2f577.chunk.css.map": "/jimWangProjectFive/static/css/main.0af2f577.chunk.css.map",
     "static/js/2.dd8a69f3.chunk.js.LICENSE.txt": "/jimWangProjectFive/static/js/2.dd8a69f3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f5be7a7f.js",
     "static/js/2.dd8a69f3.chunk.js",
-    "static/css/main.eb265310.chunk.css",
-    "static/js/main.66742011.chunk.js"
+    "static/css/main.0af2f577.chunk.css",
+    "static/js/main.0aa26b1c.chunk.js"
   ]
 }
